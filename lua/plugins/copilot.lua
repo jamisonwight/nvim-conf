@@ -31,10 +31,16 @@ return {
         },
       },
       window = {
-        border = "rounded",
-        width = 0.8,
-        height = 0.7, 
-      },
+         width = math.floor(vim.o.columns * 0.3),
+         height = math.floor(vim.o.lines * 0.9),
+         border = "rounded",
+         win_opts = {
+            relative = "editor",
+            anchor = "NE",
+            row = 1,
+            col = vim.o.columns,
+         }
+       }, 
       -- Picker configuration
       picker = {
         -- Uses telescope as the default picker
