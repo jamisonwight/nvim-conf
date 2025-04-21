@@ -8,8 +8,42 @@ return {
     lazy = false,
     priority = 900,
     config = function()
-      -- List of supported themes
-      local themes = {
+      {
+        name = "Hiller",
+        colorscheme = "hiller",
+      },
+      {
+        name = "Sarnai",
+        colorscheme = "sarnai",
+      },
+      {
+        name = "Firefly",
+        colorscheme = "firefly",
+      },
+      {
+        name = "Neogotham",
+        colorscheme = "neogotham",
+      },
+      {
+        name = "Neofusion",
+        colorscheme = "neofusion",
+      },
+      {
+        name = "Naysayer",
+        colorscheme = "naysayer",
+      },
+      {
+        name = "Pool",
+        colorscheme = "pool",
+      },
+      {
+        name = "Notepad",
+        colorscheme = "notepad",
+      },
+      {
+        name = "Sweet Fusion",
+        colorscheme = "sweet-fusion",
+      },
         {
           name = "Kanagawa Dragon",
           colorscheme = "kanagawa",
