@@ -13,10 +13,6 @@ opt.pumheight = 10                        -- Pop up menu height
 opt.showtabline = 2                       -- Always show tabs
 opt.splitbelow = true                     -- Split horizontal windows below
 opt.splitright = true                     -- Split vertical windows to the right
-opt.equalalways = false                   -- Don't automatically resize windows to be equal
-opt.winminwidth = 10                      -- Minimum window width
-opt.winminheight = 1                      -- Minimum window height
-opt.winwidth = 85                         -- Minimum width for active window
 opt.termguicolors = true                  -- Set term gui colors
 opt.timeoutlen = 300                      -- Time to wait for a mapped sequence
 opt.undofile = true                       -- Enable persistent undo
@@ -39,9 +35,7 @@ opt.sidescrolloff = 8                     -- Columns of context
 opt.encoding = "utf-8"                    -- Use UTF-8 encoding
 opt.fileencoding = "utf-8"                -- The encoding written to a file
 opt.wrap = false                          -- Display long lines as just one line
-opt.linebreak = true                      -- Break at word boundaries when wrap is on
-opt.textwidth = 0                         -- Don't auto-break lines when typing
-opt.wrapmargin = 0                        -- Margin from the right where wrapping starts
+
 -- Tabs and indentation
 opt.expandtab = true                      -- Use spaces instead of tabs
 opt.shiftwidth = 2                        -- Number of spaces to use for indent
@@ -50,7 +44,7 @@ opt.softtabstop = 2                       -- Number of spaces that a <Tab> count
 opt.smartindent = true                    -- Insert indents automatically
 opt.breakindent = true                    -- Enable break indent
 opt.showbreak = string.rep(" ", 3)        -- Make it so that long lines wrap smartly
-opt.whichwrap:append("h,l,<,>,[,]")       -- Allow keys to move to prev/next line
+
 -- Search settings
 opt.hlsearch = true                       -- Highlight all matches on previous search
 opt.ignorecase = true                     -- Ignore case in search patterns

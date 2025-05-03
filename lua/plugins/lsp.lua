@@ -35,7 +35,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "tsserver",         -- TypeScript/JavaScript
+          "typescript-language-server",  -- TypeScript/JavaScript
           "html",             -- HTML
           "cssls",            -- CSS
           "tailwindcss",      -- Tailwind CSS
@@ -136,11 +136,11 @@ return {
       -- Configure specific LSP servers for web development
 
       -- TypeScript/JavaScript
-      lspconfig.tsserver.setup({
+      lspconfig.typescript.setup({
         capabilities = capabilities,
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
-          -- Disable formatting from tsserver since we'll use null-ls or prettier
+          -- Disable formatting from typescript since we'll use null-ls or prettier
           client.server_capabilities.documentFormattingProvider = false
           client.server_capabilities.documentRangeFormattingProvider = false
         end,
@@ -335,7 +335,7 @@ return {
         function(server_name)
           -- Skip servers that are manually configured above
           local manually_configured = {
-            "tsserver",
+            "typescript",
             "html",
             "cssls",
             "eslint",
@@ -369,15 +369,18 @@ return {
   },
 
   -- Null-ls for formatting and linting
+  -- None-ls (null-ls maintained fork) for formatting and linting
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       local null_ls = require("null-ls")
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       
       null_ls.setup({
         debug = false,
+        capabilities = capabilities,
         sources = {
           -- Formatting
           null_ls.builtins.formatting.prettier.with({
@@ -410,8 +413,13 @@ return {
           null_ls.builtins.code_actions.eslint_d,
         },
         on_attach = function(client, bufnr)
+          -- Ensure client has required capabilities
+          if not client.server_capabilities then
+            client.server_capabilities = {}
+          end
+          
           -- Format on save
-          if client.supports_method("textDocument/formatting") then
+          if client.supports_method and client.supports_method("textDocument/formatting") then
             local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
             vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
             vim.api.nvim_create_autocmd("BufWritePre", {
@@ -421,7 +429,7 @@ return {
                 vim.lsp.buf.format({
                   bufnr = bufnr,
                   filter = function(client)
-                    -- Use null-ls for formatting
+                    -- Use none-ls for formatting
                     return client.name == "null-ls"
                   end,
                 })
@@ -432,6 +440,6 @@ return {
         end,
       })
     end,
-  },
 }
 
+}

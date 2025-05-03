@@ -119,5 +119,31 @@ autocmd("BufLeave", {
   command = "stopinsert",
 })
 
+-- File Explorer settings
+local file_explorer = augroup("FileExplorer", { clear = true })
+
+-- Make NvimTree text smaller
+autocmd("FileType", {
+  group = file_explorer,
+  pattern = "NvimTree",
+  callback = function()
+    -- Set smaller font size for NvimTree items
+    vim.api.nvim_set_hl(0, "NvimTreeNormal", { fg = nil, bg = nil, font = "9" })
+    vim.api.nvim_set_hl(0, "NvimTreeFolderName", { link = "NvimTreeNormal" })
+    vim.api.nvim_set_hl(0, "NvimTreeOpenedFolderName", { link = "NvimTreeNormal" })
+    vim.api.nvim_set_hl(0, "NvimTreeEmptyFolderName", { link = "NvimTreeNormal" })
+    vim.api.nvim_set_hl(0, "NvimTreeFileName", { link = "NvimTreeNormal" })
+    vim.api.nvim_set_hl(0, "NvimTreeSymlink", { link = "NvimTreeNormal" })
+    vim.api.nvim_set_hl(0, "NvimTreeRootFolder", { link = "NvimTreeNormal" })
+    
+    -- Apply highlight group to the entire NvimTree window
+    vim.opt_local.winhighlight = "Normal:NvimTreeNormal"
+    
+    -- Set smaller indent size for better visual appearance
+    vim.opt_local.shiftwidth = 1
+    vim.opt_local.tabstop = 1
+  end,
+})
+
 return {}
 

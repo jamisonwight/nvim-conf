@@ -8,8 +8,39 @@ return {
     lazy = false,
     priority = 900,
     config = function()
-      -- List of supported themes
       local themes = {
+        {
+          name = "Hiller",
+          colorscheme = "hiller",
+        },
+        {
+          name = "Sarnai",
+          colorscheme = "sarnai",
+        },
+        {
+          name = "Firefly",
+          colorscheme = "firefly",
+        },
+        {
+          name = "Neogotham",
+          colorscheme = "neogotham",
+        },
+        {
+          name = "Neofusion",
+          colorscheme = "neofusion",
+        },
+        {
+          name = "Naysayer",
+          colorscheme = "naysayer",
+        },
+        {
+          name = "Pool",
+          colorscheme = "pool",
+        },
+        {
+          name = "Notepad",
+          colorscheme = "notepad",
+        },
         {
           name = "Kanagawa Dragon",
           colorscheme = "kanagawa",
@@ -38,6 +69,10 @@ return {
         {
           name = "Vesper",
           colorscheme = "vesper",
+        },
+        {
+          name = "Gentooish",
+          colorscheme = "gentooish",
         },
         {
           name = "Everforest",
@@ -102,15 +137,18 @@ return {
           name = "Darkvoid",
           colorscheme = "icy",
         },
+        {
+          name = "Sweet Fusion",
+          colorscheme = "sweetfusion",
+        },
       }
-
       -- Themery configuration
       require("themery").setup({
         themes = themes,
         themeConfigFile = "~/.config/nvim/lua/core/options.lua",
         livePreview = true,
-        -- Set default theme (1 for Kanagawa Dragon)
-        defaultTheme = 1,
+        -- Set default theme (10 for Kanagawa Dragon - after adding new themes)
+        defaultTheme = 10,
       })
 
       -- Set up keymaps
@@ -136,6 +174,12 @@ return {
   -- Vesper
   {
     "datsfilipe/vesper.nvim",
+    lazy = true,
+  },
+
+  -- Gentooish
+  {
+    "cdaddr/gentooish.vim",
     lazy = true,
   },
 
@@ -228,6 +272,76 @@ return {
     "elianiva/icy.nvim",
     name = "darkvoid",
     lazy = true,
+  },
+
+  -- NEW THEMES SECTION
+  -- Hiller - Vibrant dark theme
+  {
+    "BenoitHiller/hiller.vim",
+    name = "hiller",
+    lazy = true,
+    priority = 1000,
+  },
+  
+  -- Sarnai - Mongolian flower inspired theme
+  {
+    "titembaatar/sarnai.nvim",
+    dependencies = { "rktjmp/lush.nvim" },
+    lazy = true,
+    priority = 1000,
+  },
+  
+  -- Firefly - Dark, comfortable theme
+  {
+    "christianrickert/vim-firefly",
+    name = "firefly",  -- Add this to match colorscheme name
+    lazy = true,
+    priority = 1000,
+  },
+  
+  -- Neogotham - Gotham colors inspired
+  {
+    "shmerl/neogotham",
+    lazy = true,
+    priority = 1000,
+  },
+  
+  -- Neofusion - Dark theme with neon colors
+  {
+    "diegoulloao/neofusion.nvim",
+    lazy = true,
+    priority = 1000,
+  },
+  
+  -- Naysayer - Comfortable, muted theme
+  {
+    "piyush-ppradhan/naysayer.vim",
+    lazy = true,
+    priority = 1000,
+  },
+  
+  -- Pool - Pool/billiards inspired theme
+  {
+    "wolandark/pool-vim",
+    name = "pool",  -- Add this to match colorscheme name
+    lazy = true,
+    priority = 1000,
+  },
+  
+  -- Notepad - Windows Notepad inspired theme
+  {
+    "wolandark/notepad-vim",
+    name = "notepad",  -- Add this to match colorscheme name
+    lazy = true,
+    priority = 1000,
+  },
+  
+  -- Sweet Fusion - Colorful, comfortable theme
+  {
+    "danieleliasib/sweet-fusion",
+    name = "sweetfusion",  -- Update to match actual colorscheme name
+    lazy = true,
+    priority = 1000,
   },
 }
 

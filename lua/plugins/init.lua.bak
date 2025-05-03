@@ -31,22 +31,6 @@ return {
   },
 
   {
-    'MeanderingProgrammer/render-markdown.nvim',
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
-    config = function()
-      -- Register copilot-chat filetype
-      require('render-markdown').setup({
-        file_types = { 'markdown', 'copilot-chat' },
-      })
-    end,
-    opts = {},
-  },
-
-  {
     "akinsho/bufferline.nvim", -- Tab/Buffer line
     event = "VeryLazy",
     dependencies = "nvim-tree/nvim-web-devicons",
@@ -79,6 +63,7 @@ return {
       })
     end,
   },
+
   {
     "numToStr/Comment.nvim", -- Smart commenting
     event = "VeryLazy",
@@ -110,6 +95,60 @@ return {
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup()
+    end,
+  },
+
+  -- File explorer
+  {
+    "nvim-tree/nvim-tree.lua",
+    lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      { "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file explorer" },
+      { "<leader>fe", "<cmd>NvimTreeFocus<CR>", desc = "Focus file explorer" },
+    },
+    config = function()
+      require("nvim-tree").setup({
+        -- Removed deprecated open_on_setup option
+        open_on_tab = true,
+        update_focused_file = {
+          enable = true,
+        },
+        view = {
+          preserve_window_proportions = true,
+        },
+        actions = {
+          open_file = {
+            quit_on_open = false,
+          },
+        },
+        renderer = {
+          indent_markers = {
+            enable = true,
+          },
+          icons = {
+            glyphs = {
+              git = {
+                unstaged = "✗",
+                staged = "✓",
+                unmerged = "",
+                renamed = "➜",
+                untracked = "★",
+                deleted = "",
+                ignored = "◌",
+              },
+            },
+          },
+        },
+        diagnostics = {
+          enable = true,
+          show_on_dirs = true,
+        },
+        filters = {
+          dotfiles = false,
+          custom = { "^.git$", "node_modules", "dist", ".cache" },
+        },
+      })
     end,
   },
 
